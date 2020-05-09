@@ -1,3 +1,4 @@
-﻿  Source.cpp
-C:\Users\admin\source\repos\ST_PV_36a\DynamicMemory\Parameters\Source.cpp(7,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
-  Parameters.vcxproj -> C:\Users\admin\source\repos\ST_PV_36a\DynamicMemory\Debug\Parameters.exe
+﻿Source.obj : error LNK2019: unresolved external symbol "void __cdecl Exchange(int *,int *)" (?Exchange@@YAXPAH0@Z) referenced in function _main
+    Hint on symbols that are defined and could potentially match:
+      "void __cdecl Exchange(int &,int &)" (?Exchange@@YAXAAH0@Z)
+C:\Users\admin\source\repos\ST_PV_36a\DynamicMemory\Debug\Parameters.exe : fatal error LNK1120: 1 unresolved externals

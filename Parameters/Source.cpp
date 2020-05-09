@@ -34,7 +34,7 @@ void main()
 }
 
 #ifdef BY_VALUE
-void Exchange(int a, int b)
+void Exchange(int &a, int &b)
 {
 	int buffer = a;
 	a = b;

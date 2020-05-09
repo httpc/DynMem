@@ -1,14 +1,22 @@
 #include<iostream>
 using namespace std;
 
-void FillRand(int arr[], const int n);					
-void Print(int arr[], const int n);
-int* push_back(int arr[],  int& n, int val);
-int* pop_back(int arr[],  int& n, int val);
-int* push_front(int arr[],  int& n, int val);
-int* pop_front(int arr[],  int& n, int val);
-int* insert(int arr[], int& n, int val, int ind);
-int* erase(int arr[], int& n, int val, int ind);
+template<typename T>
+void FillRand(T* arr, T& n);
+template<typename T>
+void Print(T* arr, T& n);
+template<typename T>
+void push_back(T*& arr,  T& n, T val);
+template<typename T>
+void pop_back(T*& arr,  T& n, T val);
+template<typename T>
+void push_front(T*& arr,  T& n, T val);
+template<typename T>
+void pop_front(T*& arr,  T& n, T val);
+template<typename T>
+void insert(T*& arr, T& n, T val, T ind);
+template<typename T>
+void erase(T*& arr, T& n, T val,T ind);
 void main()
 {
 	setlocale(LC_ALL, "");
@@ -19,24 +27,22 @@ void main()
 	Print(arr, n);
 	int value;
 	int index;
-
 	cout << "Input value: "; cin >> value;
-	cout << "Input index: "; cin >> index;
-
-	arr = insert(arr, n, value,index);
-	Print(arr, n);
-	arr = erase(arr, n, value,index);
+	//cout << "Input index: "; cin >> index;
+	push_back(arr, n, value);
 	Print(arr, n);
 	delete[] arr;
 }
-void FillRand(int arr[], const int n)
+template<typename T>
+void FillRand(T* arr,  T& n)
 {
 	for (int i = 0; i < n; i++)
 	{
 		arr[i] = rand() % 100;
 	}
 }
-void Print(int arr[], const int n)
+template<typename T>
+void Print(T* arr, T& n)
 {
 	for (int i = 0; i < n; i++)
 	{
@@ -44,7 +50,8 @@ void Print(int arr[], const int n)
 	}
 	cout << endl;
 }
-int* push_back(int arr[], int& n, int value)
+template<typename T>
+void push_back(T*& arr, T& n, T value)
 {
 	int* buffer = new int[n + 1];
 	for (int i = 0; i < n; i++)
@@ -55,9 +62,10 @@ int* push_back(int arr[], int& n, int value)
 	arr = buffer;
 	arr[n] = value;
 	n++;
-	return arr;
+	
 }
-int* pop_back(int arr[],  int& n, int value)
+template<typename T>
+void pop_back(T*& arr, T& n, T value)
 {
 	int* buffer = new int[n - 1];
 	for (int i = 0; i < n-1; i++)
@@ -67,9 +75,9 @@ int* pop_back(int arr[],  int& n, int value)
 	delete[] arr;
 	n--;
 	arr = buffer;
-	return arr;
 }
-int* push_front(int arr[],  int& n, int value)
+template<typename T>
+void push_front(T*& arr, T& n, T value)
 {
 	int* buffer = new int[n + 1];
 	for (int i = 0; i < n; i++)
@@ -80,21 +88,22 @@ int* push_front(int arr[],  int& n, int value)
 	arr = buffer;
 	arr[0] = value;
 	n++;
-	return arr;
+	
 }
-int* pop_front(int arr[],  int& n, int value)
+template<typename T>
+void pop_front(T*& arr, T& n, T value)
 {
 	int* buffer = new int[n - 1];
-	for (int i = 0; i < n-1; i++)
+	for (int i = 0; i < n - 1; i++)
 	{
-		buffer[i] = arr[i+1];
+		buffer[i] = arr[i + 1];
 	}
 	delete[] arr;
 	arr = buffer;
 	n--;
-	return arr;
 }
-int* insert(int arr[], int& n, int value, int index)
+template<typename T>
+void insert(T*& arr, T& n, T value, T index)
 {
 	int* buffer = new int[n + 1];
 	int temp=index;
@@ -106,11 +115,12 @@ int* insert(int arr[], int& n, int value, int index)
 	arr = buffer;
 	arr[index] = value;
 	n++;
-	return arr;
+	
 }
-int* erase(int arr[], int& n, int value, int index)
+template<typename T>
+void erase(T*& arr, T& n, T value, T index)
 {
-	int* buffer = new int[n - 1];
+	int* buffer = new int[--n];
 	int temp=index;
 	for (int i = 0; i < n; i++)
 	{
@@ -118,6 +128,5 @@ int* erase(int arr[], int& n, int value, int index)
 	}
 	delete[] arr;
 	arr = buffer;
-	n--;
-	return arr;
+	
 }
